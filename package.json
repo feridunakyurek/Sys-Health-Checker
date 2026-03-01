@@ -1,0 +1,30 @@
+{
+  "name": "dbhealtychecker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "dbhealtychecker": "./bin/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/feridunakyurek/dbhealtychecker.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "health-check",
+    "database",
+    "cli",
+    "debug"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "dotenv": "^17.3.1",
+    "js-yaml": "^4.1.1",
+    "ora": "^5.4.1"
+  }
+}
