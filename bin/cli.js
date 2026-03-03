@@ -28,7 +28,7 @@ async function run() {
     let errorCount = 0;
 
     results.forEach(result => {
-        const sourceText = chalk.gray(`(Kaynak: ${result.source})`);
+        const sourceText = chalk.gray(`(Source: ${result.source})`);
 
         if (result.status === 'success') {
             console.log(`${chalk.green.bold('✅ SUCCESS')} - ${chalk.bold(result.name)} ${sourceText}`);
