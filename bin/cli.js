@@ -6,7 +6,7 @@ const { scanProject } = require("../src/scanner");
 const { runHealthCheck } = require("../src/checker");
 
 async function run() {
-    console.log(chalk.cyan.bold('\n🔍 dbhealtychecker: Analyzing project infrastructure...\n'));
+    console.log(chalk.cyan.bold('\n🔍 Sys Health Checker: Analyzing project infrastructure...\n'));
 
     const scanSpinner = ora('Scanning project files and configurations...').start();
     const discovery = scanProject();
