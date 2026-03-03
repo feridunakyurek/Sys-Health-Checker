@@ -39,9 +39,9 @@ async function runHealthCheck(service) {
     if(service.type === 'Docker Engine' || service.type === 'infrastructure') {
         try {
             await withTimeout(checkDocker(), 5000);
-            return {...service, status:'success', message: 'Konteyner motoru çalışıyor.'};
+            return {...service, status:'success', message: 'Container engine is running.'};
         } catch (err) {
-            return {...service, status:'error', message: 'Konteyner motoru çalışmıyor.'};
+            return {...service, status:'error', message: 'Container engine is not running.'};
         }
     }
 
@@ -63,16 +63,16 @@ async function runHealthCheck(service) {
     }
 
     if (!port) {
-        return { ...service, status: 'warning', message: 'Bağlantı portu tespit edilemedi.' };
+        return { ...service, status: 'warning', message: 'Connection port could not be detected.' };
     }
 
     try {
         await withTimeout(checkTCP(host, port), 3000);
-        return { ...service, status: 'success', message: `Bağlantı başarılı (${host}:${port}).` };
+        return { ...service, status: 'success', message: `Connection successful (${host}:${port}).` };
     } catch (err) {
-        let errorMsg = "Ulaşılamıyor (Port: ${port}).";
-        if (err.message === 'Timeout') errorMsg =`Zaman Aşımı (Port: ${port} yanıt vermiyor)`;
-        if (err.code === 'ECONNREFUSED') errorMsg = `Bağlantı Reddedildi (Port: ${port} kapalı olabilir)`;
+        let errorMsg = `Connection failed (Port: ${port}).`;
+        if (err.message === 'Timeout') errorMsg =`Timeout  (Port: ${port} is not responding)`;
+        if (err.code === 'ECONNREFUSED') errorMsg = `Connection refused (Port: ${port} is closed)`;
         return { ...service, status: 'error', message: errorMsg };
     }
 }
